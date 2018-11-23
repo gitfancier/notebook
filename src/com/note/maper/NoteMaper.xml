@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.note.maper.NoteMaper">
+    <insert id="insertNote" parameterType="com.note.model.Note">
+        INSERT INTO t_note(uid,psw,note,create_time,update_time)
+        VALUES(#{uid},#{psw},#{note},#{create_time},#{update_time})
+    </insert>
+    <delete id="deleteNoteById" parameterType="int">
+        DELETE FROM t_note WHERE id = #{id}
+    </delete>
+    <update id="updateNote" parameterType="com.note.model.Note">
+        UPDATE t_user SET
+        uid=#{uid},
+        psw=#{psw},
+        note=#{note},
+        update_time=#{update_time}
+        WHERE id=#{id}
+    </update>
+
+    <select id="getNoteById" parameterType="int"
+        resultType="com.note.model.Note">
+        SELECT id,uid,psw,note,create_time,update_time FROM t_note WHERE id=#{id}
+    </select>
+    <select id="getNoteAllByUsername" parameterType="String"
+    	resultType="com.note.model.Note">
+        <!-- SELECT (id,username,password,truename,sex,email,create_time,update_time) FROM t_user --> 
+        select id,uid,psw,note,create_time,update_time from `t_note` where uid=#{uid}
+    </select>
+
+
+
+
+</mapper>

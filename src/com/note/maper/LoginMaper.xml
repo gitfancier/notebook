@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.note.maper.LoginMaper">
+    <update id="updateUser" parameterType="com.note.model.User">
+        UPDATE t_user SET
+        username=#{username},
+        password=#{password},
+        truename=#{truename},
+        sex=#{sex},
+        email=#{email},
+        update_time=#{update_time}
+        WHERE id=#{id}
+    </update>
+
+    <select id="getPasswordByUsername" parameterType="String" resultType="String">
+        SELECT password FROM t_user WHERE username=#{username}
+    </select>
+
+
+
+
+</mapper>

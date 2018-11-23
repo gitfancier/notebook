@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.note.maper.UserMaper">
+    <insert id="insertUser" parameterType="com.note.model.User">
+        INSERT INTO t_user(username,password,truename,sex,email,create_time,update_time)
+        VALUES(#{username},#{password},#{truename},#{sex},#{email},#{create_time},#{update_time})
+    </insert>
+    <delete id="deleteUserById" parameterType="int">
+        DELETE FROM t_user WHERE id = #{id}
+    </delete>
+    <update id="updateUser" parameterType="com.note.model.User">
+        UPDATE t_user SET
+        username=#{username},
+        password=#{password},
+        truename=#{truename},
+        sex=#{sex},
+        email=#{email},
+        update_time=#{update_time}
+        WHERE id=#{id}
+    </update>
+
+    <select id="getUserById" parameterType="int"
+        resultType="com.note.model.User">
+        SELECT id,username,password,truename,sex,email,create_time,update_time FROM t_user WHERE id=#{id}
+    </select>
+    <select id="getUserAll" resultType="com.note.model.User">
+        <!-- SELECT (id,username,password,truename,sex,email,create_time,update_time) FROM t_user --> 
+        select id,username,password,truename,sex,email,create_time,update_time from `t_user`
+    </select>
+
+
+
+
+</mapper>
